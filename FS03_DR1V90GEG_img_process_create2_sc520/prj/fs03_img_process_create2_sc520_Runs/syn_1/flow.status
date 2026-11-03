@@ -1,0 +1,23 @@
+Location         : D:\Documents\bc10anlogictd\FS03_DR1V90GEG_img_process_create2_sc520\prj\fs03_img_process_create2_sc520_Runs\syn_1
+Running with     : Tang Dynasty v6.2.168116
+                   Copyright (c) 2012-2025 Anlogic Inc.
+Top Model        : design_top_wrapper
+Device           : DR1V90GEG484
+Speed            : 2
+
+Timing Mode      : basic
+Setup            : WNS -1636ps  TNS   -53700ps  NUM_FEPS   129
+Hold             : WNS   378ps  TNS        0ps  NUM_FEPS     0
+
+Flow Statistics  :
+--------------------------------------------------------------------------------------------------
+     command     |  #calls  |  wall time  |  cpu time(s)  |  used memory(mb)  |  peak memory(mb)  
+--------------------------------------------------------------------------------------------------
+  optimize_gate  |    1     |  2m9s(64%)  |   126(64%)    |       1199        |       1199        
+  optimize_rtl   |    1     |  1m7s(33%)  |    64(32%)    |        937        |       1044        
+  import_device  |    1     |   4s(2%)    |     4(2%)     |        358        |        358        
+    read_adc     |    1     |   0s(0%)    |     0(0%)     |        678        |        678        
+    read_sdc     |    1     |   0s(0%)    |     0(0%)     |        678        |        678        
+--------------------------------------------------------------------------------------------------
+      total      |    5     |    3m20s    |      194      |       1199        |       1199        
+--------------------------------------------------------------------------------------------------

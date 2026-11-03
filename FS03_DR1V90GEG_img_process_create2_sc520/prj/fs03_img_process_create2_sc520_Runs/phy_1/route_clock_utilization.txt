@@ -1,0 +1,420 @@
+Copyright (c) 2012-2025 Anlogic Inc., All Rights Reserved.
+----------------------------------------------------------------------------
+| Tool Version : Tang Dynasty v6.2.168116 Jul 10 2025 19:20:51              
+| Date         : Tue Oct 27 02:11:47 2026                                   
+| Command      : report_clock_utilization -file route_clock_utilization.txt 
+| Design       : design_top_wrapper                                         
+| Device       : dr1_90-DR1V90GEG484                                        
+| Speed        : 2                                                          
+----------------------------------------------------------------------------
+
+Table of Contents
+-----------------
+A. Clock Utilization Report.
+B. Clock Buffer Info.
+C. IP Stat.
+
+
+------------------------------------------------------------------------------------------------------------
+----------------------------------------A. Clock Utilization Report.----------------------------------------
+------------------------------------------------------------------------------------------------------------
+
+1. Clock Buffer Utilization
++---------------+------+-----------+
+| Type          | Used | Available |
++---------------+------+-----------+
+| DR1_PHY_GCLK  |    7 |        32 |
+| DR1_PHY_IOCLK |    0 |        16 |
+| DR1_PHY_LCLK  |    0 |        20 |
+| DR1_PHY_MLCLK |    0 |         8 |
+| DR1_PHY_SCLK  |   20 |        72 |
++---------------+------+-----------+
+
+
+2. Global Clock Resource Stat.
++------------+------------+--------------+------------------------------------------------------------------------------------+------------+------+-----------+-------------------+-------------+-------------+--------------+-----------------------------------------------------------------+------------------------------------------------------------------+
+| Global Idx | Source Idx | Global Type  | Inst.Pin                                                                           | Constraint | site | Location  | Load Clock Region | Clock Loads | Total Loads | Clock Period | Clock                                                           | Net                                                              |
++------------+------------+--------------+------------------------------------------------------------------------------------+------------+------+-----------+-------------------+-------------+-------------+--------------+-----------------------------------------------------------------+------------------------------------------------------------------+
+| gclk_0     | src_0      | DR1_PHY_GCLK | u_isp_top/u_frame_diff3/u_ref_b/I_wclk_created_gclkinst.clkout                     | None       | B    | x79y59z2  |                 6 |        5037 |        5038 |              |                                                                 | u_isp_top/u_frame_diff3/u_ref_b/I_wclk_syn_1                     |
+| gclk_1     | src_1      | DR1_PHY_GCLK | S_hdmi_pixel_clk_created_gclkinst.clkout                                           | None       | T    | x79y59z16 |                 6 |        2802 |        2802 |       13.333 | u_pll_main/DR1_PHY_PLL_WRAPERR_main_Inst/u_DR1_PHY_PLL.clkc[4]  | S_hdmi_pixel_clk_syn_652                                         |
+| gclk_2     | src_2      | DR1_PHY_GCLK | u_pll_main/bufg_feedback.clkout                                                    | None       | T    | x79y59z17 |                 3 |         602 |         602 |       10.000 | u_pll_main/DR1_PHY_PLL_WRAPERR_main_Inst/u_DR1_PHY_PLL.clkc[0]  | S_100m_clk                                                       |
+| gclk_3     | src_3      | DR1_PHY_GCLK | O_cam_24m_dup_1_created_gclkinst.clkout                                            | None       | B    | x79y59z0  |                 2 |         101 |         102 |       41.668 | u_pll_cam24m/DR1_PHY_PLL_WRAPERR_cam_Inst/u_DR1_PHY_PLL.clkc[1] | O_cam_24m_syn_3                                                  |
+| gclk_4     | src_4      | DR1_PHY_GCLK | u_hdmi_tx/u_hdmi2phy_wrapper/u0_lane_lvds_8_1/I_serial_clk_created_gclkinst.clkout | None       | T    | x79y59z18 |                 1 |          38 |          38 |        2.666 | u_pll_main/DR1_PHY_PLL_WRAPERR_main_Inst/u_DR1_PHY_PLL.clkc[5]  | u_hdmi_tx/u_hdmi2phy_wrapper/u0_lane_lvds_8_1/I_serial_clk_syn_1 |
+| gclk_5     | src_5      | DR1_PHY_GCLK | u_uicfgcs520/u_i2c/scl_clk_created_gclkinst.clkout                                 | None       | B    | x79y59z3  |                 1 |          18 |          18 |              |                                                                 | u_uicfgcs520/u_i2c/scl_clk_syn_9                                 |
+| gclk_6     | src_6      | DR1_PHY_GCLK | u_pll_cam24m/bufg_feedback.clkout                                                  | None       | B    | x79y59z1  |                 1 |           1 |           1 |       13.333 | u_pll_cam24m/DR1_PHY_PLL_WRAPERR_cam_Inst/u_DR1_PHY_PLL.clkc[0] | u_pll_cam24m/DR1_PHY_PLL_WRAPERR_cam_Inst/fbclk                  |
++------------+------------+--------------+------------------------------------------------------------------------------------+------------+------+-----------+-------------------+-------------+-------------+--------------+-----------------------------------------------------------------+------------------------------------------------------------------+
+
+
+3. Global Clock Source Stat.
++------------+------------+----------------+-----------------------------------------------------------------+------------+------+-----------+-------------+-----------------+---------------------+-----------------------------------------------------------------+------------------------------------------------------------+
+| Source Idx | Global Idx | Source Type    | Inst.Pin                                                        | Constraint | Site | Location  | Clock Loads | Non Clock Loads | Source Clock Period | Source Clock                                                    | Net                                                        |
++------------+------------+----------------+-----------------------------------------------------------------+------------+------+-----------+-------------+-----------------+---------------------+-----------------------------------------------------------------+------------------------------------------------------------+
+| src_0      | gclk_0     | DR1_PHY_MIPIIO | u_mipi_dphy_rx/u_DR1_PHY_MIPIIO.hsrx_byteclk_to_fabric          | X109Y0Z0   | N/A  | x109y0z0  |           1 |               0 |                     |                                                                 | u_isp_top/u_frame_diff3/u_ref_b/I_wclk                     |
+| src_1      | gclk_1     | DR1_PHY_PLL    | u_pll_main/DR1_PHY_PLL_WRAPERR_main_Inst/u_DR1_PHY_PLL.clkc[4]  | None       | N/A  | x123y79z0 |           1 |               0 |              13.333 | u_pll_main/DR1_PHY_PLL_WRAPERR_main_Inst/u_DR1_PHY_PLL.clkc[4]  | S_hdmi_pixel_clk                                           |
+| src_2      | gclk_2     | DR1_PHY_PLL    | u_pll_main/DR1_PHY_PLL_WRAPERR_main_Inst/u_DR1_PHY_PLL.clkc[0]  | None       | N/A  | x123y79z0 |           1 |               0 |              10.000 | u_pll_main/DR1_PHY_PLL_WRAPERR_main_Inst/u_DR1_PHY_PLL.clkc[0]  | u_pll_main/clk0_buf                                        |
+| src_3      | gclk_3     | DR1_PHY_PLL    | u_pll_cam24m/DR1_PHY_PLL_WRAPERR_cam_Inst/u_DR1_PHY_PLL.clkc[1] | None       | N/A  | x123y39z0 |           1 |               0 |              41.668 | u_pll_cam24m/DR1_PHY_PLL_WRAPERR_cam_Inst/u_DR1_PHY_PLL.clkc[1] | O_cam_24m_dup_1                                            |
+| src_4      | gclk_4     | DR1_PHY_PLL    | u_pll_main/DR1_PHY_PLL_WRAPERR_main_Inst/u_DR1_PHY_PLL.clkc[5]  | None       | N/A  | x123y79z0 |           1 |               0 |               2.666 | u_pll_main/DR1_PHY_PLL_WRAPERR_main_Inst/u_DR1_PHY_PLL.clkc[5]  | u_hdmi_tx/u_hdmi2phy_wrapper/u0_lane_lvds_8_1/I_serial_clk |
+| src_5      | gclk_5     | DR1_PHY_LSLICE | u_uicfgcs520/u_i2c/clkdiv_reg[0]_syn_5.oqb                      | None       | N/A  | x44y17z7  |           1 |               1 |                     |                                                                 | u_uicfgcs520/u_i2c/scl_clk                                 |
+| src_6      | gclk_6     | DR1_PHY_PLL    | u_pll_cam24m/DR1_PHY_PLL_WRAPERR_cam_Inst/u_DR1_PHY_PLL.clkc[0] | None       | N/A  | x123y39z0 |           1 |               0 |              13.333 | u_pll_cam24m/DR1_PHY_PLL_WRAPERR_cam_Inst/u_DR1_PHY_PLL.clkc[0] | u_pll_cam24m/clk0_buf                                      |
++------------+------------+----------------+-----------------------------------------------------------------+------------+------+-----------+-------------+-----------------+---------------------+-----------------------------------------------------------------+------------------------------------------------------------+
+
+
+4. Local Clock Resource Stat.
++-----------+----------------+---------------------------------------------------------------------+------------+------+-----------+-------------+-------------+--------------+-----------------------------------------------------------------+--------------------------------------------------------------------------+
+| Local Idx | Type           | Inst.Pin                                                            | Constraint | site | Location  | Clock Loads | Total Loads | Clock Period | Clock                                                           | Net                                                                      |
++-----------+----------------+---------------------------------------------------------------------+------------+------+-----------+-------------+-------------+--------------+-----------------------------------------------------------------+--------------------------------------------------------------------------+
+| local_18  | DR1_PHY_PAD    | I_sysclk_syn_2.di                                                   | None       | N/A  | x123y60z0 |           2 |           2 |       40.000 | sys_clk_25m                                                     | I_sysclk_dup_1                                                           |
+| local_19  | DR1_PHY_LSLICE | u_uicfgcs520/u_i2c/clkdiv_reg[0]_syn_5.oqb                          | None       | N/A  | x44y17z7  |           1 |           2 |              |                                                                 | u_uicfgcs520/u_i2c/scl_clk                                               |
+| local_27  | DR1_PHY_SCLK   | O_cam_24m_dup_1_created_gclkinst_auto_created_sclk_s_0_r_bk5.clkout | None       | S0 R | x79y19z16 |           0 |           1 |       41.668 | u_pll_cam24m/DR1_PHY_PLL_WRAPERR_cam_Inst/u_DR1_PHY_PLL.clkc[1] | O_cam_24m_dup_1_created_gclkinst_auto_created_sclk_s_0_r_bk5_sclk_outnet |
++-----------+----------------+---------------------------------------------------------------------+------------+------+-----------+-------------+-------------+--------------+-----------------------------------------------------------------+--------------------------------------------------------------------------+
+
+
+5. Clock Region Resource Stat.
++-------------------+------------------+------------------+------------------+------------------+------------------+------------------+------------------+
+|                   |   Global Clock   | PH1_PHY_SCLK_V2  | PH1_PHY_LCLK_V2  | PH1_PHY_MLCLK_V2 | PH1_PHY_HP_MLCLK |  PH1_PHY_IOCLK   | PH1_PHY_HP_IOCLK |
++-------------------+--------+---------+--------+---------+--------+---------+--------+---------+--------+---------+--------+---------+--------+---------+
+| Clock Region Name | Used   | Avail   | Used   | Avail   | Used   | Avail   | Used   | Avail   | Used   | Avail   | Used   | Avail   | Used   | Avail   |
++-------------------+--------+---------+--------+---------+--------+---------+--------+---------+--------+---------+--------+---------+--------+---------+
+| X0Y0              |      5 |      12 |      0 |       0 |      0 |       0 |      0 |       0 |      0 |       0 |      0 |       0 |      0 |       0 |
+| X1Y0              |      5 |      12 |      0 |       0 |      0 |       0 |      0 |       0 |      0 |       0 |      0 |       0 |      0 |       0 |
+| X0Y1              |      2 |      12 |      0 |       0 |      0 |       0 |      0 |       0 |      0 |       0 |      0 |       0 |      0 |       0 |
+| X1Y1              |      4 |      12 |      0 |       0 |      0 |       0 |      0 |       0 |      0 |       0 |      0 |       0 |      0 |       0 |
+| X0Y2              |      2 |      12 |      0 |       0 |      0 |       0 |      0 |       0 |      0 |       0 |      0 |       0 |      0 |       0 |
+| X1Y2              |      2 |      12 |      0 |       0 |      0 |       0 |      0 |       0 |      0 |       0 |      0 |       0 |      0 |       0 |
++-------------------+--------+---------+--------+---------+--------+---------+--------+---------+--------+---------+--------+---------+--------+---------+
+
+
+6. Track Utilization.
++----+----+----+
+|    | X0 | X1 |
++----+----+----+
+| Y2 |  2 |  2 |
+| Y1 |  2 |  4 |
+| Y0 |  5 |  5 |
++----+----+----+
+
+
+7. Global Clock gclk_0 Stat.
++------------+--------------+----------------------------------------------------------------+-------------------+-------+-------------+---------------+----------+----------------------------------------------+----------------------+------------------+-------------------------+--------------------+-------------------+
+| Global Idx | Type         | Driver.Pin                                                     | Driver Region (D) | Clock | Period (ns) | Waveform (ns) | Root (R) | Net                                          | FanoutGroup1         | FanoutGroup2     | FanoutGroup3            | FanoutGroup4       | FanoutGroup5      |
++------------+--------------+----------------------------------------------------------------+-------------------+-------+-------------+---------------+----------+----------------------------------------------+----------------------+------------------+-------------------------+--------------------+-------------------+
+| gclk_0     | DR1_PHY_GCLK | u_isp_top/u_frame_diff3/u_ref_b/I_wclk_created_gclkinst.clkout | B                 |       |             |               | N/A      | u_isp_top/u_frame_diff3/u_ref_b/I_wclk_syn_1 | DR1_PHY_LSLICE(4910) | DR1_PHY_ERAM(83) | DR1_PHY_DRAMHARDCON(36) | DR1_PHY_DSPSIOU(8) | DR1_PHY_MIPIIO(1) |
++------------+--------------+----------------------------------------------------------------+-------------------+-------+-------------+---------------+----------+----------------------------------------------+----------------------+------------------+-------------------------+--------------------+-------------------+
++----+-----+------+
+|    | X0  | X1   |
++----+-----+------+
+| Y2 | 838 |  580 |
+| Y1 | 608 | 1567 |
+| Y0 | 341 | 1104 |
++----+-----+------+
+
+
+8. Global Clock gclk_1 Stat.
++------------+--------------+------------------------------------------+-------------------+----------------------------------------------------------------+-------------+---------------+----------+--------------------------+----------------------+------------------+--------------------+--------------------+---------------------------+
+| Global Idx | Type         | Driver.Pin                               | Driver Region (D) | Clock                                                          | Period (ns) | Waveform (ns) | Root (R) | Net                      | FanoutGroup1         | FanoutGroup2     | FanoutGroup3       | FanoutGroup4       | FanoutGroup5              |
++------------+--------------+------------------------------------------+-------------------+----------------------------------------------------------------+-------------+---------------+----------+--------------------------+----------------------+------------------+--------------------+--------------------+---------------------------+
+| gclk_1     | DR1_PHY_GCLK | S_hdmi_pixel_clk_created_gclkinst.clkout | T                 | u_pll_main/DR1_PHY_PLL_WRAPERR_main_Inst/u_DR1_PHY_PLL.clkc[4] |      13.333 | {0.000 6.666} | N/A      | S_hdmi_pixel_clk_syn_652 | DR1_PHY_LSLICE(2696) | DR1_PHY_ERAM(83) | DR1_PHY_MSLICE(16) | DR1_PHY_DSPSIOU(5) | DR1_PHY_SHIFTERHARDCON(2) |
++------------+--------------+------------------------------------------+-------------------+----------------------------------------------------------------+-------------+---------------+----------+--------------------------+----------------------+------------------+--------------------+--------------------+---------------------------+
++----+-----+-----+
+|    | X0  | X1  |
++----+-----+-----+
+| Y2 |   6 | 133 |
+| Y1 |  88 | 747 |
+| Y0 | 851 | 977 |
++----+-----+-----+
+
+
+9. Global Clock gclk_2 Stat.
++------------+--------------+---------------------------------+-------------------+----------------------------------------------------------------+-------------+---------------+----------+------------+---------------------+----------------+
+| Global Idx | Type         | Driver.Pin                      | Driver Region (D) | Clock                                                          | Period (ns) | Waveform (ns) | Root (R) | Net        | FanoutGroup1        | FanoutGroup2   |
++------------+--------------+---------------------------------+-------------------+----------------------------------------------------------------+-------------+---------------+----------+------------+---------------------+----------------+
+| gclk_2     | DR1_PHY_GCLK | u_pll_main/bufg_feedback.clkout | T                 | u_pll_main/DR1_PHY_PLL_WRAPERR_main_Inst/u_DR1_PHY_PLL.clkc[0] |      10.000 | {0.000 5.000} | N/A      | S_100m_clk | DR1_PHY_LSLICE(601) | DR1_PHY_PLL(1) |
++------------+--------------+---------------------------------+-------------------+----------------------------------------------------------------+-------------+---------------+----------+------------+---------------------+----------------+
++----+-----+----+
+|    | X0  | X1 |
++----+-----+----+
+| Y2 |   0 |  0 |
+| Y1 |   0 |  9 |
+| Y0 | 575 | 18 |
++----+-----+----+
+
+
+10. Global Clock gclk_3 Stat.
++------------+--------------+-----------------------------------------+-------------------+-----------------------------------------------------------------+-------------+----------------+----------+-----------------+---------------------+----------------+
+| Global Idx | Type         | Driver.Pin                              | Driver Region (D) | Clock                                                           | Period (ns) | Waveform (ns)  | Root (R) | Net             | FanoutGroup1        | FanoutGroup2   |
++------------+--------------+-----------------------------------------+-------------------+-----------------------------------------------------------------+-------------+----------------+----------+-----------------+---------------------+----------------+
+| gclk_3     | DR1_PHY_GCLK | O_cam_24m_dup_1_created_gclkinst.clkout | B                 | u_pll_cam24m/DR1_PHY_PLL_WRAPERR_cam_Inst/u_DR1_PHY_PLL.clkc[1] |      41.668 | {0.000 20.834} | N/A      | O_cam_24m_syn_3 | DR1_PHY_LSLICE(101) | DR1_PHY_PAD(1) |
++------------+--------------+-----------------------------------------+-------------------+-----------------------------------------------------------------+-------------+----------------+----------+-----------------+---------------------+----------------+
++----+-----+----+
+|    | X0  | X1 |
++----+-----+----+
+| Y2 |   0 |  0 |
+| Y1 |   0 |  0 |
+| Y0 | 101 |  1 |
++----+-----+----+
+
+
+11. Global Clock gclk_4 Stat.
++------------+--------------+------------------------------------------------------------------------------------+-------------------+----------------------------------------------------------------+-------------+---------------+----------+------------------------------------------------------------------+--------------------+----------------+
+| Global Idx | Type         | Driver.Pin                                                                         | Driver Region (D) | Clock                                                          | Period (ns) | Waveform (ns) | Root (R) | Net                                                              | FanoutGroup1       | FanoutGroup2   |
++------------+--------------+------------------------------------------------------------------------------------+-------------------+----------------------------------------------------------------+-------------+---------------+----------+------------------------------------------------------------------+--------------------+----------------+
+| gclk_4     | DR1_PHY_GCLK | u_hdmi_tx/u_hdmi2phy_wrapper/u0_lane_lvds_8_1/I_serial_clk_created_gclkinst.clkout | T                 | u_pll_main/DR1_PHY_PLL_WRAPERR_main_Inst/u_DR1_PHY_PLL.clkc[5] |       2.666 | {0.000 1.333} | N/A      | u_hdmi_tx/u_hdmi2phy_wrapper/u0_lane_lvds_8_1/I_serial_clk_syn_1 | DR1_PHY_LSLICE(34) | DR1_PHY_PAD(4) |
++------------+--------------+------------------------------------------------------------------------------------+-------------------+----------------------------------------------------------------+-------------+---------------+----------+------------------------------------------------------------------+--------------------+----------------+
++----+----+----+
+|    | X0 | X1 |
++----+----+----+
+| Y2 |  0 |  0 |
+| Y1 |  0 | 38 |
+| Y0 |  0 |  0 |
++----+----+----+
+
+
+12. Global Clock gclk_5 Stat.
++------------+--------------+----------------------------------------------------+-------------------+-------+-------------+---------------+----------+----------------------------------+--------------------+
+| Global Idx | Type         | Driver.Pin                                         | Driver Region (D) | Clock | Period (ns) | Waveform (ns) | Root (R) | Net                              | FanoutGroup1       |
++------------+--------------+----------------------------------------------------+-------------------+-------+-------------+---------------+----------+----------------------------------+--------------------+
+| gclk_5     | DR1_PHY_GCLK | u_uicfgcs520/u_i2c/scl_clk_created_gclkinst.clkout | B                 |       |             |               | N/A      | u_uicfgcs520/u_i2c/scl_clk_syn_9 | DR1_PHY_LSLICE(18) |
++------------+--------------+----------------------------------------------------+-------------------+-------+-------------+---------------+----------+----------------------------------+--------------------+
++----+----+----+
+|    | X0 | X1 |
++----+----+----+
+| Y2 |  0 |  0 |
+| Y1 |  0 |  0 |
+| Y0 | 18 |  0 |
++----+----+----+
+
+
+13. Global Clock gclk_6 Stat.
++------------+--------------+-----------------------------------+-------------------+-----------------------------------------------------------------+-------------+---------------+----------+-------------------------------------------------+----------------+
+| Global Idx | Type         | Driver.Pin                        | Driver Region (D) | Clock                                                           | Period (ns) | Waveform (ns) | Root (R) | Net                                             | FanoutGroup1   |
++------------+--------------+-----------------------------------+-------------------+-----------------------------------------------------------------+-------------+---------------+----------+-------------------------------------------------+----------------+
+| gclk_6     | DR1_PHY_GCLK | u_pll_cam24m/bufg_feedback.clkout | B                 | u_pll_cam24m/DR1_PHY_PLL_WRAPERR_cam_Inst/u_DR1_PHY_PLL.clkc[0] |      13.333 | {0.000 6.666} | N/A      | u_pll_cam24m/DR1_PHY_PLL_WRAPERR_cam_Inst/fbclk | DR1_PHY_PLL(1) |
++------------+--------------+-----------------------------------+-------------------+-----------------------------------------------------------------+-------------+---------------+----------+-------------------------------------------------+----------------+
++----+----+----+
+|    | X0 | X1 |
++----+----+----+
+| Y2 |  0 |  0 |
+| Y1 |  0 |  0 |
+| Y0 |  0 |  1 |
++----+----+----+
+
+
+14. Region X0Y0
++----------+-------+----------------+------------+-------------+-------------+-------------------------------------------------------------------------------------------------+---------------------+-------------------------+-----------------+
+| Idx      | Track | Type           | Constraint | Clock Loads | Total Loads | Net                                                                                             | FanoutGroup1        | FanoutGroup2            | FanoutGroup3    |
++----------+-------+----------------+------------+-------------+-------------+-------------------------------------------------------------------------------------------------+---------------------+-------------------------+-----------------+
+| gclk_0   | 2     | DR1_PHY_GCLK   | None       |         341 |         341 | u_isp_top/u_frame_diff3/u_ref_b/I_wclk_syn_1                                                    | DR1_PHY_LSLICE(321) | DR1_PHY_DRAMHARDCON(11) | DR1_PHY_ERAM(9) |
+| gclk_1   | 0     | DR1_PHY_GCLK   | None       |         851 |         851 | S_hdmi_pixel_clk_syn_652                                                                        | DR1_PHY_LSLICE(816) | DR1_PHY_ERAM(35)        |                 |
+| gclk_2   | 1     | DR1_PHY_GCLK   | None       |         575 |         575 | S_100m_clk                                                                                      | DR1_PHY_LSLICE(575) |                         |                 |
+| gclk_3   | 3     | DR1_PHY_GCLK   | None       |         101 |         101 | O_cam_24m_syn_3                                                                                 | DR1_PHY_LSLICE(101) |                         |                 |
+| gclk_5   | 4     | DR1_PHY_GCLK   | None       |          18 |          18 | u_uicfgcs520/u_i2c/scl_clk_syn_9                                                                | DR1_PHY_LSLICE(18)  |                         |                 |
+|          |       |                |            |             |             |                                                                                                 |                     |                         |                 |
+| local_3  | N/A   | DR1_PHY_SCLK   | None       |         851 |         851 | S_hdmi_pixel_clk_created_gclkinst_auto_created_sclk_s_0_l_bk1_sclk_outnet                       | DR1_PHY_LSLICE(816) | DR1_PHY_ERAM(35)        |                 |
+| local_8  | N/A   | DR1_PHY_SCLK   | None       |         575 |         575 | u_pll_main/bufg_feedback_auto_created_sclk_s_0_l_bk2_sclk_outnet                                | DR1_PHY_LSLICE(575) |                         |                 |
+| local_9  | N/A   | DR1_PHY_SCLK   | None       |         341 |         341 | u_isp_top/u_frame_diff3/u_ref_b/I_wclk_created_gclkinst_auto_created_sclk_s_0_l_bk3_sclk_outnet | DR1_PHY_LSLICE(321) | DR1_PHY_DRAMHARDCON(11) | DR1_PHY_ERAM(9) |
+| local_11 | N/A   | DR1_PHY_SCLK   | None       |         101 |         101 | O_cam_24m_dup_1_created_gclkinst_auto_created_sclk_s_0_l_bk4_sclk_outnet                        | DR1_PHY_LSLICE(101) |                         |                 |
+| local_14 | N/A   | DR1_PHY_SCLK   | None       |          18 |          18 | u_uicfgcs520/u_i2c/scl_clk_created_gclkinst_auto_created_sclk_s_0_l_bk5_sclk_outnet             | DR1_PHY_LSLICE(18)  |                         |                 |
+| local_19 | N/A   | DR1_PHY_LSLICE | None       |           0 |           1 | u_uicfgcs520/u_i2c/scl_clk                                                                      | DR1_PHY_LSLICE(1)   |                         |                 |
++----------+-------+----------------+------------+-------------+-------------+-------------------------------------------------------------------------------------------------+---------------------+-------------------------+-----------------+
+
+
+15. Region X1Y0
++----------+-------+--------------+------------+-------------+-------------+-------------------------------------------------------------------------------------------------+----------------------+--------------------+
+| Idx      | Track | Type         | Constraint | Clock Loads | Total Loads | Net                                                                                             | FanoutGroup1         | FanoutGroup2       |
++----------+-------+--------------+------------+-------------+-------------+-------------------------------------------------------------------------------------------------+----------------------+--------------------+
+| gclk_0   | 1     | DR1_PHY_GCLK | None       |        1103 |        1104 | u_isp_top/u_frame_diff3/u_ref_b/I_wclk_syn_1                                                    | DR1_PHY_LSLICE(1103) | DR1_PHY_MIPIIO(1)  |
+| gclk_1   | 2     | DR1_PHY_GCLK | None       |         977 |         977 | S_hdmi_pixel_clk_syn_652                                                                        | DR1_PHY_LSLICE(973)  | DR1_PHY_DSPSIOU(4) |
+| gclk_2   | 3     | DR1_PHY_GCLK | None       |          18 |          18 | S_100m_clk                                                                                      | DR1_PHY_LSLICE(18)   |                    |
+| gclk_3   | 4     | DR1_PHY_GCLK | None       |           0 |           1 | O_cam_24m_syn_3                                                                                 | DR1_PHY_PAD(1)       |                    |
+| gclk_6   | 0     | DR1_PHY_GCLK | None       |           1 |           1 | u_pll_cam24m/DR1_PHY_PLL_WRAPERR_cam_Inst/fbclk                                                 | DR1_PHY_PLL(1)       |                    |
+|          |       |              |            |             |             |                                                                                                 |                      |                    |
+| local_1  | N/A   | DR1_PHY_SCLK | None       |        1103 |        1104 | u_isp_top/u_frame_diff3/u_ref_b/I_wclk_created_gclkinst_auto_created_sclk_s_0_r_bk2_sclk_outnet | DR1_PHY_LSLICE(1103) | DR1_PHY_MIPIIO(1)  |
+| local_2  | N/A   | DR1_PHY_SCLK | None       |         977 |         977 | S_hdmi_pixel_clk_created_gclkinst_auto_created_sclk_s_0_r_bk3_sclk_outnet                       | DR1_PHY_LSLICE(973)  | DR1_PHY_DSPSIOU(4) |
+| local_15 | N/A   | DR1_PHY_SCLK | None       |          18 |          18 | u_pll_main/bufg_feedback_auto_created_sclk_s_0_r_bk4_sclk_outnet                                | DR1_PHY_LSLICE(18)   |                    |
+| local_18 | N/A   | DR1_PHY_PAD  | None       |           1 |           1 | I_sysclk_dup_1                                                                                  | DR1_PHY_PLL(1)       |                    |
+| local_26 | N/A   | DR1_PHY_SCLK | None       |           1 |           1 | u_pll_cam24m/bufg_feedback_auto_created_sclk_s_0_r_bk1_sclk_outnet                              | DR1_PHY_PLL(1)       |                    |
+| local_27 | N/A   | DR1_PHY_SCLK | None       |           0 |           1 | O_cam_24m_dup_1_created_gclkinst_auto_created_sclk_s_0_r_bk5_sclk_outnet                        | DR1_PHY_PAD(1)       |                    |
++----------+-------+--------------+------------+-------------+-------------+-------------------------------------------------------------------------------------------------+----------------------+--------------------+
+
+
+16. Region X0Y1
++----------+-------+----------------+------------+-------------+-------------+-------------------------------------------------------------------------------------------------+---------------------+------------------+------------------------+
+| Idx      | Track | Type           | Constraint | Clock Loads | Total Loads | Net                                                                                             | FanoutGroup1        | FanoutGroup2     | FanoutGroup3           |
++----------+-------+----------------+------------+-------------+-------------+-------------------------------------------------------------------------------------------------+---------------------+------------------+------------------------+
+| gclk_0   | 0     | DR1_PHY_GCLK   | None       |         608 |         608 | u_isp_top/u_frame_diff3/u_ref_b/I_wclk_syn_1                                                    | DR1_PHY_LSLICE(575) | DR1_PHY_ERAM(24) | DR1_PHY_DRAMHARDCON(9) |
+| gclk_1   | 1     | DR1_PHY_GCLK   | None       |          88 |          88 | S_hdmi_pixel_clk_syn_652                                                                        | DR1_PHY_LSLICE(56)  | DR1_PHY_ERAM(32) |                        |
+|          |       |                |            |             |             |                                                                                                 |                     |                  |                        |
+| local_6  | N/A   | DR1_PHY_SCLK   | None       |         608 |         608 | u_isp_top/u_frame_diff3/u_ref_b/I_wclk_created_gclkinst_auto_created_sclk_s_1_l_bk1_sclk_outnet | DR1_PHY_LSLICE(575) | DR1_PHY_ERAM(24) | DR1_PHY_DRAMHARDCON(9) |
+| local_12 | N/A   | DR1_PHY_SCLK   | None       |          88 |          88 | S_hdmi_pixel_clk_created_gclkinst_auto_created_sclk_s_1_l_bk2_sclk_outnet                       | DR1_PHY_LSLICE(56)  | DR1_PHY_ERAM(32) |                        |
+| local_19 | N/A   | DR1_PHY_LSLICE | None       |           1 |           1 | u_uicfgcs520/u_i2c/scl_clk                                                                      | DR1_PHY_GCLK(1)     |                  |                        |
+| local_20 | N/A   | DR1_PHY_PLL    | None       |           1 |           1 | O_cam_24m_dup_1                                                                                 | DR1_PHY_GCLK(1)     |                  |                        |
+| local_21 | N/A   | DR1_PHY_PLL    | None       |           1 |           1 | S_hdmi_pixel_clk                                                                                | DR1_PHY_GCLK(1)     |                  |                        |
+| local_22 | N/A   | DR1_PHY_PLL    | None       |           1 |           1 | u_hdmi_tx/u_hdmi2phy_wrapper/u0_lane_lvds_8_1/I_serial_clk                                      | DR1_PHY_GCLK(1)     |                  |                        |
+| local_23 | N/A   | DR1_PHY_PLL    | None       |           1 |           1 | u_pll_main/clk0_buf                                                                             | DR1_PHY_GCLK(1)     |                  |                        |
+| local_24 | N/A   | DR1_PHY_PLL    | None       |           1 |           1 | u_pll_cam24m/clk0_buf                                                                           | DR1_PHY_GCLK(1)     |                  |                        |
+| local_25 | N/A   | DR1_PHY_MIPIIO | X109Y0Z0   |           1 |           1 | u_isp_top/u_frame_diff3/u_ref_b/I_wclk                                                          | DR1_PHY_GCLK(1)     |                  |                        |
++----------+-------+----------------+------------+-------------+-------------+-------------------------------------------------------------------------------------------------+---------------------+------------------+------------------------+
+
+
+17. Region X1Y1
++----------+-------+--------------+------------+-------------+-------------+---------------------------------------------------------------------------------------------------------------------+----------------------+-------------------------+--------------------+---------------------------+--------------------+
+| Idx      | Track | Type         | Constraint | Clock Loads | Total Loads | Net                                                                                                                 | FanoutGroup1         | FanoutGroup2            | FanoutGroup3       | FanoutGroup4              | FanoutGroup5       |
++----------+-------+--------------+------------+-------------+-------------+---------------------------------------------------------------------------------------------------------------------+----------------------+-------------------------+--------------------+---------------------------+--------------------+
+| gclk_0   | 1     | DR1_PHY_GCLK | None       |        1567 |        1567 | u_isp_top/u_frame_diff3/u_ref_b/I_wclk_syn_1                                                                        | DR1_PHY_LSLICE(1550) | DR1_PHY_DRAMHARDCON(16) | DR1_PHY_DSPSIOU(1) |                           |                    |
+| gclk_1   | 2     | DR1_PHY_GCLK | None       |         747 |         747 | S_hdmi_pixel_clk_syn_652                                                                                            | DR1_PHY_LSLICE(718)  | DR1_PHY_MSLICE(16)      | DR1_PHY_ERAM(10)   | DR1_PHY_SHIFTERHARDCON(2) | DR1_PHY_DSPSIOU(1) |
+| gclk_2   | 0     | DR1_PHY_GCLK | None       |           9 |           9 | S_100m_clk                                                                                                          | DR1_PHY_LSLICE(8)    | DR1_PHY_PLL(1)          |                    |                           |                    |
+| gclk_4   | 3     | DR1_PHY_GCLK | None       |          38 |          38 | u_hdmi_tx/u_hdmi2phy_wrapper/u0_lane_lvds_8_1/I_serial_clk_syn_1                                                    | DR1_PHY_LSLICE(34)   | DR1_PHY_PAD(4)          |                    |                           |                    |
+|          |       |              |            |             |             |                                                                                                                     |                      |                         |                    |                           |                    |
+| local_0  | N/A   | DR1_PHY_SCLK | None       |        1567 |        1567 | u_isp_top/u_frame_diff3/u_ref_b/I_wclk_created_gclkinst_auto_created_sclk_s_1_r_bk2_sclk_outnet                     | DR1_PHY_LSLICE(1550) | DR1_PHY_DRAMHARDCON(16) | DR1_PHY_DSPSIOU(1) |                           |                    |
+| local_5  | N/A   | DR1_PHY_SCLK | None       |         747 |         747 | S_hdmi_pixel_clk_created_gclkinst_auto_created_sclk_s_1_r_bk3_sclk_outnet                                           | DR1_PHY_LSLICE(718)  | DR1_PHY_MSLICE(16)      | DR1_PHY_ERAM(10)   | DR1_PHY_SHIFTERHARDCON(2) | DR1_PHY_DSPSIOU(1) |
+| local_13 | N/A   | DR1_PHY_SCLK | None       |          38 |          38 | u_hdmi_tx/u_hdmi2phy_wrapper/u0_lane_lvds_8_1/I_serial_clk_created_gclkinst_auto_created_sclk_s_1_r_bk4_sclk_outnet | DR1_PHY_LSLICE(34)   | DR1_PHY_PAD(4)          |                    |                           |                    |
+| local_16 | N/A   | DR1_PHY_SCLK | None       |           9 |           9 | u_pll_main/bufg_feedback_auto_created_sclk_s_1_r_bk1_sclk_outnet                                                    | DR1_PHY_LSLICE(8)    | DR1_PHY_PLL(1)          |                    |                           |                    |
+| local_18 | N/A   | DR1_PHY_PAD  | None       |           1 |           1 | I_sysclk_dup_1                                                                                                      | DR1_PHY_PLL(1)       |                         |                    |                           |                    |
++----------+-------+--------------+------------+-------------+-------------+---------------------------------------------------------------------------------------------------------------------+----------------------+-------------------------+--------------------+---------------------------+--------------------+
+
+
+18. Region X0Y2
++----------+-------+--------------+------------+-------------+-------------+-------------------------------------------------------------------------------------------------+---------------------+------------------+--------------------+
+| Idx      | Track | Type         | Constraint | Clock Loads | Total Loads | Net                                                                                             | FanoutGroup1        | FanoutGroup2     | FanoutGroup3       |
++----------+-------+--------------+------------+-------------+-------------+-------------------------------------------------------------------------------------------------+---------------------+------------------+--------------------+
+| gclk_0   | 0     | DR1_PHY_GCLK | None       |         838 |         838 | u_isp_top/u_frame_diff3/u_ref_b/I_wclk_syn_1                                                    | DR1_PHY_LSLICE(790) | DR1_PHY_ERAM(42) | DR1_PHY_DSPSIOU(6) |
+| gclk_1   | 1     | DR1_PHY_GCLK | None       |           6 |           6 | S_hdmi_pixel_clk_syn_652                                                                        | DR1_PHY_ERAM(6)     |                  |                    |
+|          |       |              |            |             |             |                                                                                                 |                     |                  |                    |
+| local_4  | N/A   | DR1_PHY_SCLK | None       |         838 |         838 | u_isp_top/u_frame_diff3/u_ref_b/I_wclk_created_gclkinst_auto_created_sclk_s_2_l_bk1_sclk_outnet | DR1_PHY_LSLICE(790) | DR1_PHY_ERAM(42) | DR1_PHY_DSPSIOU(6) |
+| local_17 | N/A   | DR1_PHY_SCLK | None       |           6 |           6 | S_hdmi_pixel_clk_created_gclkinst_auto_created_sclk_s_2_l_bk2_sclk_outnet                       | DR1_PHY_ERAM(6)     |                  |                    |
++----------+-------+--------------+------------+-------------+-------------+-------------------------------------------------------------------------------------------------+---------------------+------------------+--------------------+
+
+
+19. Region X1Y2
++----------+-------+--------------+------------+-------------+-------------+-------------------------------------------------------------------------------------------------+---------------------+-----------------+--------------------+
+| Idx      | Track | Type         | Constraint | Clock Loads | Total Loads | Net                                                                                             | FanoutGroup1        | FanoutGroup2    | FanoutGroup3       |
++----------+-------+--------------+------------+-------------+-------------+-------------------------------------------------------------------------------------------------+---------------------+-----------------+--------------------+
+| gclk_0   | 0     | DR1_PHY_GCLK | None       |         580 |         580 | u_isp_top/u_frame_diff3/u_ref_b/I_wclk_syn_1                                                    | DR1_PHY_LSLICE(571) | DR1_PHY_ERAM(8) | DR1_PHY_DSPSIOU(1) |
+| gclk_1   | 1     | DR1_PHY_GCLK | None       |         133 |         133 | S_hdmi_pixel_clk_syn_652                                                                        | DR1_PHY_LSLICE(133) |                 |                    |
+|          |       |              |            |             |             |                                                                                                 |                     |                 |                    |
+| local_7  | N/A   | DR1_PHY_SCLK | None       |         580 |         580 | u_isp_top/u_frame_diff3/u_ref_b/I_wclk_created_gclkinst_auto_created_sclk_s_2_r_bk1_sclk_outnet | DR1_PHY_LSLICE(571) | DR1_PHY_ERAM(8) | DR1_PHY_DSPSIOU(1) |
+| local_10 | N/A   | DR1_PHY_SCLK | None       |         133 |         133 | S_hdmi_pixel_clk_created_gclkinst_auto_created_sclk_s_2_r_bk2_sclk_outnet                       | DR1_PHY_LSLICE(133) |                 |                    |
++----------+-------+--------------+------------+-------------+-------------+-------------------------------------------------------------------------------------------------+---------------------+-----------------+--------------------+
+
+
+
+-----------------------------------------------------------------------------------------------------
+----------------------------------------B. Clock Buffer Info.----------------------------------------
+-----------------------------------------------------------------------------------------------------
+
+1.Clock Buffer Index.
++---------+--------------+-----------+--------+--------+---------------------------------------------------------------------------------------------------------+
+| Index   | Type         | Location  | Sector | Fanout | Buffer                                                                                                  |
++---------+--------------+-----------+--------+--------+---------------------------------------------------------------------------------------------------------+
+| gclk_1  | DR1_PHY_GCLK | x79y59z2  |      1 |      6 | u_isp_top/u_frame_diff3/u_ref_b/I_wclk_created_gclkinst                                                 |
+| gclk_2  | DR1_PHY_GCLK | x79y59z16 |      1 |      6 | S_hdmi_pixel_clk_created_gclkinst                                                                       |
+| gclk_3  | DR1_PHY_GCLK | x79y59z17 |      1 |      3 | u_pll_main/bufg_feedback                                                                                |
+| gclk_4  | DR1_PHY_GCLK | x79y59z0  |      1 |      2 | O_cam_24m_dup_1_created_gclkinst                                                                        |
+| gclk_5  | DR1_PHY_GCLK | x79y59z1  |      1 |      1 | u_pll_cam24m/bufg_feedback                                                                              |
+| gclk_6  | DR1_PHY_GCLK | x79y59z18 |      1 |      1 | u_hdmi_tx/u_hdmi2phy_wrapper/u0_lane_lvds_8_1/I_serial_clk_created_gclkinst                             |
+| gclk_7  | DR1_PHY_GCLK | x79y59z3  |      1 |      1 | u_uicfgcs520/u_i2c/scl_clk_created_gclkinst                                                             |
+|         |              |           |        |        |                                                                                                         |
+| sclk_1  | DR1_PHY_SCLK | x79y59z13 |      1 |   1567 | u_isp_top/u_frame_diff3/u_ref_b/I_wclk_created_gclkinst_auto_created_sclk_s_1_r_bk2                     |
+| sclk_2  | DR1_PHY_SCLK | x79y19z13 |      0 |   1104 | u_isp_top/u_frame_diff3/u_ref_b/I_wclk_created_gclkinst_auto_created_sclk_s_0_r_bk2                     |
+| sclk_3  | DR1_PHY_SCLK | x79y19z14 |      0 |    977 | S_hdmi_pixel_clk_created_gclkinst_auto_created_sclk_s_0_r_bk3                                           |
+| sclk_4  | DR1_PHY_SCLK | x79y19z0  |      0 |    851 | S_hdmi_pixel_clk_created_gclkinst_auto_created_sclk_s_0_l_bk1                                           |
+| sclk_5  | DR1_PHY_SCLK | x79y99z0  |      2 |    838 | u_isp_top/u_frame_diff3/u_ref_b/I_wclk_created_gclkinst_auto_created_sclk_s_2_l_bk1                     |
+| sclk_6  | DR1_PHY_SCLK | x79y59z14 |      1 |    747 | S_hdmi_pixel_clk_created_gclkinst_auto_created_sclk_s_1_r_bk3                                           |
+| sclk_7  | DR1_PHY_SCLK | x79y59z0  |      1 |    608 | u_isp_top/u_frame_diff3/u_ref_b/I_wclk_created_gclkinst_auto_created_sclk_s_1_l_bk1                     |
+| sclk_8  | DR1_PHY_SCLK | x79y99z12 |      2 |    580 | u_isp_top/u_frame_diff3/u_ref_b/I_wclk_created_gclkinst_auto_created_sclk_s_2_r_bk1                     |
+| sclk_9  | DR1_PHY_SCLK | x79y19z1  |      0 |    575 | u_pll_main/bufg_feedback_auto_created_sclk_s_0_l_bk2                                                    |
+| sclk_10 | DR1_PHY_SCLK | x79y19z2  |      0 |    341 | u_isp_top/u_frame_diff3/u_ref_b/I_wclk_created_gclkinst_auto_created_sclk_s_0_l_bk3                     |
+| sclk_11 | DR1_PHY_SCLK | x79y99z13 |      2 |    133 | S_hdmi_pixel_clk_created_gclkinst_auto_created_sclk_s_2_r_bk2                                           |
+| sclk_12 | DR1_PHY_SCLK | x79y19z3  |      0 |    101 | O_cam_24m_dup_1_created_gclkinst_auto_created_sclk_s_0_l_bk4                                            |
+| sclk_13 | DR1_PHY_SCLK | x79y59z1  |      1 |     88 | S_hdmi_pixel_clk_created_gclkinst_auto_created_sclk_s_1_l_bk2                                           |
+| sclk_14 | DR1_PHY_SCLK | x79y59z15 |      1 |     38 | u_hdmi_tx/u_hdmi2phy_wrapper/u0_lane_lvds_8_1/I_serial_clk_created_gclkinst_auto_created_sclk_s_1_r_bk4 |
+| sclk_15 | DR1_PHY_SCLK | x79y19z4  |      0 |     18 | u_uicfgcs520/u_i2c/scl_clk_created_gclkinst_auto_created_sclk_s_0_l_bk5                                 |
+| sclk_16 | DR1_PHY_SCLK | x79y19z15 |      0 |     18 | u_pll_main/bufg_feedback_auto_created_sclk_s_0_r_bk4                                                    |
+| sclk_17 | DR1_PHY_SCLK | x79y59z12 |      1 |      9 | u_pll_main/bufg_feedback_auto_created_sclk_s_1_r_bk1                                                    |
+| sclk_18 | DR1_PHY_SCLK | x79y99z1  |      2 |      6 | S_hdmi_pixel_clk_created_gclkinst_auto_created_sclk_s_2_l_bk2                                           |
+| sclk_19 | DR1_PHY_SCLK | x79y19z12 |      0 |      1 | u_pll_cam24m/bufg_feedback_auto_created_sclk_s_0_r_bk1                                                  |
+| sclk_20 | DR1_PHY_SCLK | x79y19z16 |      0 |      1 | O_cam_24m_dup_1_created_gclkinst_auto_created_sclk_s_0_r_bk5                                            |
++---------+--------------+-----------+--------+--------+---------------------------------------------------------------------------------------------------------+
+
+2.Clock Buffer Driver Stat.
++---------+-----------+------+---------------------------------------+----------------+------------+
+| Index   | Location  | Site | DriverType.Pin                        | DriverLocation | DriverSite |
++---------+-----------+------+---------------------------------------+----------------+------------+
+| gclk_1  | x79y59z2  | B    | DR1_PHY_MIPIIO.hsrx_byteclk_to_fabric | x109y0z0       | S0 R       |
+| gclk_2  | x79y59z16 | T    | DR1_PHY_PLL.clkc[4]                   | x123y79z0      | S1 R       |
+| gclk_3  | x79y59z17 | T    | DR1_PHY_PLL.clkc[0]                   | x123y79z0      | S1 R       |
+| gclk_4  | x79y59z0  | B    | DR1_PHY_PLL.clkc[1]                   | x123y39z0      | S0 R       |
+| gclk_5  | x79y59z1  | B    | DR1_PHY_PLL.clkc[0]                   | x123y39z0      | S0 R       |
+| gclk_6  | x79y59z18 | T    | DR1_PHY_PLL.clkc[5]                   | x123y79z0      | S1 R       |
+| gclk_7  | x79y59z3  | B    | DR1_PHY_LSLICE.oqb                    | x44y17z7       | S0 L       |
+|         |           |      |                                       |                |            |
+| sclk_1  | x79y59z13 | S1 R | DR1_PHY_GCLK.clkout                   | x79y59z2       | S1 R       |
+| sclk_2  | x79y19z13 | S0 R | DR1_PHY_GCLK.clkout                   | x79y59z2       | S1 R       |
+| sclk_3  | x79y19z14 | S0 R | DR1_PHY_GCLK.clkout                   | x79y59z16      | S1 R       |
+| sclk_4  | x79y19z0  | S0 L | DR1_PHY_GCLK.clkout                   | x79y59z16      | S1 R       |
+| sclk_5  | x79y99z0  | S2 L | DR1_PHY_GCLK.clkout                   | x79y59z2       | S1 R       |
+| sclk_6  | x79y59z14 | S1 R | DR1_PHY_GCLK.clkout                   | x79y59z16      | S1 R       |
+| sclk_7  | x79y59z0  | S1 L | DR1_PHY_GCLK.clkout                   | x79y59z2       | S1 R       |
+| sclk_8  | x79y99z12 | S2 R | DR1_PHY_GCLK.clkout                   | x79y59z2       | S1 R       |
+| sclk_9  | x79y19z1  | S0 L | DR1_PHY_GCLK.clkout                   | x79y59z17      | S1 R       |
+| sclk_10 | x79y19z2  | S0 L | DR1_PHY_GCLK.clkout                   | x79y59z2       | S1 R       |
+| sclk_11 | x79y99z13 | S2 R | DR1_PHY_GCLK.clkout                   | x79y59z16      | S1 R       |
+| sclk_12 | x79y19z3  | S0 L | DR1_PHY_GCLK.clkout                   | x79y59z0       | S1 R       |
+| sclk_13 | x79y59z1  | S1 L | DR1_PHY_GCLK.clkout                   | x79y59z16      | S1 R       |
+| sclk_14 | x79y59z15 | S1 R | DR1_PHY_GCLK.clkout                   | x79y59z18      | S1 R       |
+| sclk_15 | x79y19z4  | S0 L | DR1_PHY_GCLK.clkout                   | x79y59z3       | S1 R       |
+| sclk_16 | x79y19z15 | S0 R | DR1_PHY_GCLK.clkout                   | x79y59z17      | S1 R       |
+| sclk_17 | x79y59z12 | S1 R | DR1_PHY_GCLK.clkout                   | x79y59z17      | S1 R       |
+| sclk_18 | x79y99z1  | S2 L | DR1_PHY_GCLK.clkout                   | x79y59z16      | S1 R       |
+| sclk_19 | x79y19z12 | S0 R | DR1_PHY_GCLK.clkout                   | x79y59z1       | S1 R       |
+| sclk_20 | x79y19z16 | S0 R | DR1_PHY_GCLK.clkout                   | x79y59z0       | S1 R       |
++---------+-----------+------+---------------------------------------+----------------+------------+
+
+3.Clock Buffer Fanout Stat.
++---------+----------------------+-------------------------+------------------------+---------------------------+--------------------+
+| Index   | FanoutGroup1         | FanoutGroup2            | FanoutGroup3           | FanoutGroup4              | FanoutGroup5       |
++---------+----------------------+-------------------------+------------------------+---------------------------+--------------------+
+| gclk_1  | DR1_PHY_SCLK(6)      |                         |                        |                           |                    |
+| gclk_2  | DR1_PHY_SCLK(6)      |                         |                        |                           |                    |
+| gclk_3  | DR1_PHY_SCLK(3)      |                         |                        |                           |                    |
+| gclk_4  | DR1_PHY_SCLK(2)      |                         |                        |                           |                    |
+| gclk_5  | DR1_PHY_SCLK(1)      |                         |                        |                           |                    |
+| gclk_6  | DR1_PHY_SCLK(1)      |                         |                        |                           |                    |
+| gclk_7  | DR1_PHY_SCLK(1)      |                         |                        |                           |                    |
+|         |                      |                         |                        |                           |                    |
+| sclk_1  | DR1_PHY_LSLICE(1550) | DR1_PHY_DRAMHARDCON(16) | DR1_PHY_DSPSIOU(1)     |                           |                    |
+| sclk_2  | DR1_PHY_LSLICE(1103) | DR1_PHY_MIPIIO(1)       |                        |                           |                    |
+| sclk_3  | DR1_PHY_LSLICE(973)  | DR1_PHY_DSPSIOU(4)      |                        |                           |                    |
+| sclk_4  | DR1_PHY_LSLICE(816)  | DR1_PHY_ERAM(35)        |                        |                           |                    |
+| sclk_5  | DR1_PHY_LSLICE(790)  | DR1_PHY_ERAM(42)        | DR1_PHY_DSPSIOU(6)     |                           |                    |
+| sclk_6  | DR1_PHY_LSLICE(718)  | DR1_PHY_MSLICE(16)      | DR1_PHY_ERAM(10)       | DR1_PHY_SHIFTERHARDCON(2) | DR1_PHY_DSPSIOU(1) |
+| sclk_7  | DR1_PHY_LSLICE(575)  | DR1_PHY_ERAM(24)        | DR1_PHY_DRAMHARDCON(9) |                           |                    |
+| sclk_8  | DR1_PHY_LSLICE(571)  | DR1_PHY_ERAM(8)         | DR1_PHY_DSPSIOU(1)     |                           |                    |
+| sclk_9  | DR1_PHY_LSLICE(575)  |                         |                        |                           |                    |
+| sclk_10 | DR1_PHY_LSLICE(321)  | DR1_PHY_DRAMHARDCON(11) | DR1_PHY_ERAM(9)        |                           |                    |
+| sclk_11 | DR1_PHY_LSLICE(133)  |                         |                        |                           |                    |
+| sclk_12 | DR1_PHY_LSLICE(101)  |                         |                        |                           |                    |
+| sclk_13 | DR1_PHY_LSLICE(56)   | DR1_PHY_ERAM(32)        |                        |                           |                    |
+| sclk_14 | DR1_PHY_LSLICE(34)   | DR1_PHY_PAD(4)          |                        |                           |                    |
+| sclk_15 | DR1_PHY_LSLICE(18)   |                         |                        |                           |                    |
+| sclk_16 | DR1_PHY_LSLICE(18)   |                         |                        |                           |                    |
+| sclk_17 | DR1_PHY_LSLICE(8)    | DR1_PHY_PLL(1)          |                        |                           |                    |
+| sclk_18 | DR1_PHY_ERAM(6)      |                         |                        |                           |                    |
+| sclk_19 | DR1_PHY_PLL(1)       |                         |                        |                           |                    |
+| sclk_20 | DR1_PHY_PAD(1)       |                         |                        |                           |                    |
++---------+----------------------+-------------------------+------------------------+---------------------------+--------------------+
+
+
+-------------------------------------------------------------------------------------------
+----------------------------------------C. IP Stat.----------------------------------------
+-------------------------------------------------------------------------------------------
+
+1.IP List.
++-------+------+----------+------+----------+
+| Index | Bank | Location | Side | Instance |
++-------+------+----------+------+----------+
+
+2.IP Clock Topo Stat.
++--------+--------+-------+----+--------+--------+---------+
+| Driver | Buffer | Inpin | IP | Outpin | Buffer | Fanouts |
++--------+--------+-------+----+--------+--------+---------+
