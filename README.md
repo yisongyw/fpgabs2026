@@ -38,7 +38,7 @@
 
 顶层 `design_top_wrapper` 把视频主链路、检测/运动侧路、人机交互外设与时钟/复位全部在 PL 内完成：
 
-![系统硬件模块组成与数据流](fig/fig_system_flow.png)
+![系统硬件模块组成与数据流](FS03_DR1V90GEG_img_process_create2_sc520/fig/fig_system_flow.png)
 
 ### 主要硬件模块
 
@@ -72,7 +72,7 @@
 
 ### 3.1 检测流水线（`obj_detect` + `obj_feature_extract`）
 
-![目标检测流水线](fig/fig_obj_detect_pipeline.png)
+![目标检测流水线](FS03_DR1V90GEG_img_process_create2_sc520/fig/fig_obj_detect_pipeline.png)
 
 **算法特点（真实实现）**
 
@@ -137,7 +137,7 @@
 
 以下为本工程实际上板运行照片：
 
-![板载实验台：TD 工程运行 + HDMI 输出（Anlogic Logo、帧计数与 MODE/TH OSD）+ FS03 板卡与外设模块](fig/board_photo.png)
+![板载实验台：TD 工程运行 + HDMI 输出（Anlogic Logo、帧计数与 MODE/TH OSD）+ FS03 板卡与外设模块](FS03_DR1V90GEG_img_process_create2_sc520/fig/board_photo.png)
 
 ---
 
