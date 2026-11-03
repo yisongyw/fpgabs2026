@@ -1,0 +1,119 @@
+# ===========================================================================
+# FS03_DR1V90GEG_img_process_create2_sc520  --  FS03(DR1V90GEG484) 引脚约束
+#
+# 引脚来源（两份资料互相印证）：
+#   A) FS03 官方例程 FS03_DR1V90GEG_exp_prj/ex_fpga_base 的 uisrc/04_pin
+#      * 系统时钟 25MHz : L18        * 复位 KEY1 : L19   * KEY2 : K18
+#      * 8 个板载 LED   : L21 L22 M21 M22 N22 P20 P22 P21
+#      * HDMI mini      : 时钟 M19，数据 N17 / L17 / M15
+#   B) 米联客 FS03 硬件手册 hardware组合1.pdf 第 32/34 页引脚分配表
+#      * MIPI-A 差分对  : FCLK Y19/AA19，FLANE0 AA22/AB22，FLANE1 AA21/AB21，
+#                         FLANE2 AB14/AB15，FLANE3 AA16/AB16
+#      * 摄像头控制     : CAM_SCL U16 / CAM_SDA U21 / CAM_CLK Y18 /
+#                         CAM_RST U15（另有 CAM_ON U17 / CAM_OFF T21 /
+#                         CAM_HS U22 / CAM_VS V17，本工程不用）
+#      * HDMI 差分对    : HDMIO_FCLK M19/M20，FD0 N17/N18，FD1 L17/M17，
+#                         FD2 M15/M16（与 A 完全一致）
+#      * LED LDE1~LDE8  : L21 L22 M21 M22 N22 P20 P22 P21（与 A 完全一致）
+#      * KEY1 L19 / KEY2 K18 / KEY3 J18，CLK_PL_25M L18（与 A 完全一致）
+# ===========================================================================
+
+# ---------------- 时钟 / 复位 / 按键 ----------------
+set_pin_assignment	{ I_sysclk }	{ LOCATION = L18; IOSTANDARD = LVCMOS33; PULLTYPE = PULLUP; }
+set_pin_assignment	{ I_rstn   }	{ LOCATION = L19; IOSTANDARD = LVCMOS33; PULLTYPE = PULLUP; }
+set_pin_assignment	{ I_button }	{ LOCATION = K18; IOSTANDARD = LVCMOS33; PULLTYPE = PULLUP; }
+
+# ---------------- 板载 LED ----------------
+set_pin_assignment	{ O_led[0] }	{ LOCATION = L21; IOSTANDARD = LVCMOS33; DRIVESTRENGTH = 8; PULLTYPE = NONE; }
+set_pin_assignment	{ O_led[1] }	{ LOCATION = L22; IOSTANDARD = LVCMOS33; DRIVESTRENGTH = 8; PULLTYPE = NONE; }
+set_pin_assignment	{ O_led[2] }	{ LOCATION = M21; IOSTANDARD = LVCMOS33; DRIVESTRENGTH = 8; PULLTYPE = NONE; }
+set_pin_assignment	{ O_led[3] }	{ LOCATION = M22; IOSTANDARD = LVCMOS33; DRIVESTRENGTH = 8; PULLTYPE = NONE; }
+set_pin_assignment	{ O_led[4] }	{ LOCATION = N22; IOSTANDARD = LVCMOS33; DRIVESTRENGTH = 8; PULLTYPE = NONE; }
+set_pin_assignment	{ O_led[5] }	{ LOCATION = P20; IOSTANDARD = LVCMOS33; DRIVESTRENGTH = 8; PULLTYPE = NONE; }
+set_pin_assignment	{ O_led[6] }	{ LOCATION = P22; IOSTANDARD = LVCMOS33; DRIVESTRENGTH = 8; PULLTYPE = NONE; }
+set_pin_assignment	{ O_led[7] }	{ LOCATION = P21; IOSTANDARD = LVCMOS33; DRIVESTRENGTH = 8; PULLTYPE = NONE; }
+
+# ---------------- HDMI mini 输出（LVDS33_E 差分对） ----------------
+# N 腿不显式约束，TD 按 LVDS33_E 差分对自动配对
+set_pin_assignment	{ O_hdmi_clk_p   }	{ LOCATION = M19; IOSTANDARD = LVDS33_E; }
+set_pin_assignment	{ O_hdmi_tx_p[0] }	{ LOCATION = N17; IOSTANDARD = LVDS33_E; }
+set_pin_assignment	{ O_hdmi_tx_p[1] }	{ LOCATION = L17; IOSTANDARD = LVDS33_E; }
+set_pin_assignment	{ O_hdmi_tx_p[2] }	{ LOCATION = M15; IOSTANDARD = LVDS33_E; }
+
+# ---------------- 摄像头控制 ----------------
+set_pin_assignment	{ O_cam_scl  }	{ LOCATION = U16; IOSTANDARD = LVCMOS33; DRIVESTRENGTH = 8; PULLTYPE = PULLUP; }
+set_pin_assignment	{ IO_cam_sda }	{ LOCATION = U21; IOSTANDARD = LVCMOS33; DRIVESTRENGTH = 8; PULLTYPE = PULLUP; }
+set_pin_assignment	{ O_cam_24m  }	{ LOCATION = Y18; IOSTANDARD = LVCMOS33; DRIVESTRENGTH = 8; PULLTYPE = NONE; }
+set_pin_assignment	{ O_cam_rst  }	{ LOCATION = U15; IOSTANDARD = LVCMOS33; DRIVESTRENGTH = 8; PULLTYPE = NONE; }
+
+# ---------------- MIPI CSI-2 差分输入（MIPI-A bank） ----------------
+# 本工程只用 1 对时钟 + 2 对数据(lane0/lane1)；lane2/lane3 虽在
+# DR1_PHY_MIPIIO 上关闭(hsrx_ch2/3_en=0)，pad 仍连在原语上，故一并定位。
+# DR1_PHY_MIPIIO 必须由 IP Generator 指定 bank；等效写法（取自 TD 安装目录
+# ip\depot\MIPIIOF9F0D0P0_1.0\MIPIIO\Other\plugin_end.tcl）：
+#   MIPIIO0 -> x109y0z0   /   MIPIIO1 -> x109y20z0
+# FS03 的 MIPI 座为 MIPIA，取 MIPIIO0；若与上方引脚冲突则改为 x109y20z0。
+set_inst_assignment { u_mipi_dphy_rx/u_DR1_PHY_MIPIIO } {location=x109y0z0}
+
+set_pin_assignment	{ IO_rx_clk_pad_p     }	{ LOCATION = Y19;   }
+set_pin_assignment	{ IO_rx_clk_pad_n     }	{ LOCATION = AA19;  }
+set_pin_assignment	{ IO_rx_data_pad_p[0] }	{ LOCATION = AA22; }
+set_pin_assignment	{ IO_rx_data_pad_n[0] }	{ LOCATION = AB22; }
+set_pin_assignment	{ IO_rx_data_pad_p[1] }	{ LOCATION = AA21; }
+set_pin_assignment	{ IO_rx_data_pad_n[1] }	{ LOCATION = AB21; }
+set_pin_assignment	{ IO_rx_data_pad_p[2] }	{ LOCATION = AB14; }
+set_pin_assignment	{ IO_rx_data_pad_n[2] }	{ LOCATION = AB15; }
+set_pin_assignment	{ IO_rx_data_pad_p[3] }	{ LOCATION = AA16; }
+set_pin_assignment	{ IO_rx_data_pad_n[3] }	{ LOCATION = AB16; }
+
+# ===========================================================================
+# New peripheral pins (beyond the baseline), per
+# "鍦‵S03_DR1V90GEG杩炴帴澶栬gpio鏈€缁堝紩鑴氳鏄?md"
+# CEP pin <-> FPGA ball mapping: see
+# "澶栬纭欢妯″潡gpio寮曡剼鍦‵S03_DR1V90GEG鐨勮繛鎺ユ柟寮?md"
+#
+# NOTE: create1 bound 4 PS-ethernet placeholder pins (H19/G15/C17/D18) here.
+# create2 is 100% PL (no PS, no ethernet), so those placeholder pins are
+# REMOVED -> the 4 DIP-switch upper bits S5~S8 stay electrically unused.
+# ===========================================================================
+
+# ---- 1) DIP switch module (12-pin 2x6, PMOD-SWITCH) ----
+#     CEP1(J11), module up, normal, start col 2, cols 2~7
+#       S1=pin4=H20  S5=pin3=H19   GND=pin11/12=B19/B20   3V3=pin13/14=D22/C22
+#       S2=pin6=G16  S6=pin5=G15
+#       S3=pin8=C18  S7=pin7=C17
+#       S4=pin10=C19 S8=pin9=D18
+#     Low 4 bits S1~S4 map to HX SW1~SW4 (SOBEL / GRAY / BIN / status text)
+set_pin_assignment	{ I_sw[0] }	{ LOCATION = H20; IOSTANDARD = LVCMOS33; PULLTYPE = NONE; }
+set_pin_assignment	{ I_sw[1] }	{ LOCATION = G16; IOSTANDARD = LVCMOS33; PULLTYPE = NONE; }
+set_pin_assignment	{ I_sw[2] }	{ LOCATION = C18; IOSTANDARD = LVCMOS33; PULLTYPE = NONE; }
+set_pin_assignment	{ I_sw[3] }	{ LOCATION = C19; IOSTANDARD = LVCMOS33; PULLTYPE = NONE; }
+# module power: GND driven 0 / 3V3 driven 1 by FPGA GPIO
+set_pin_assignment	{ O_sw_gnd[0] }	{ LOCATION = B19; IOSTANDARD = LVCMOS33; DRIVESTRENGTH = 8; PULLTYPE = NONE; }
+set_pin_assignment	{ O_sw_gnd[1] }	{ LOCATION = B20; IOSTANDARD = LVCMOS33; DRIVESTRENGTH = 8; PULLTYPE = NONE; }
+set_pin_assignment	{ O_sw_vcc[0] }	{ LOCATION = D22; IOSTANDARD = LVCMOS33; DRIVESTRENGTH = 8; PULLTYPE = NONE; }
+set_pin_assignment	{ O_sw_vcc[1] }	{ LOCATION = C22; IOSTANDARD = LVCMOS33; DRIVESTRENGTH = 8; PULLTYPE = NONE; }
+
+# ---- 2) active buzzer module (3-pin 1x3, 9012 drive, low-level trigger) ----
+#     CEP1(J11) bottom row, normal, start col 23, cols 23~25
+#       VCC=pin46=D15  IO=pin48=B22  GND=pin50=G22
+set_pin_assignment	{ O_buzz_vcc }	{ LOCATION = D15; IOSTANDARD = LVCMOS33; DRIVESTRENGTH = 8; PULLTYPE = NONE; }
+set_pin_assignment	{ O_buzz }	    { LOCATION = B22; IOSTANDARD = LVCMOS33; DRIVESTRENGTH = 8; PULLTYPE = NONE; }
+set_pin_assignment	{ O_buzz_gnd }	{ LOCATION = G22; IOSTANDARD = LVCMOS33; DRIVESTRENGTH = 8; PULLTYPE = NONE; }
+
+# ---- 3) TM1638 digit+LED+key module (5-pin 1x5) ----
+#     CEP2(J12) bottom row, normal, start col 2, cols 2~6
+#       VCC=pin4=W12  GND=pin6=AB12  STB=pin8=Y8  CLK=pin10=AB11  DIO=pin12=Y10
+#     Low 4 keys S1~S4 map to HX K1~K4; low 4 LEDs map to LED1~LED4;
+#     8-digit tube high->low (left->right) maps to HX 8-digit tube.
+set_pin_assignment	{ O_tm_vcc }	{ LOCATION = W12;  IOSTANDARD = LVCMOS33; DRIVESTRENGTH = 8; PULLTYPE = NONE; }
+set_pin_assignment	{ O_tm_gnd }	{ LOCATION = AB12; IOSTANDARD = LVCMOS33; DRIVESTRENGTH = 8; PULLTYPE = NONE; }
+set_pin_assignment	{ O_tm_stb }	{ LOCATION = Y8;   IOSTANDARD = LVCMOS33; DRIVESTRENGTH = 8; PULLTYPE = NONE; }
+set_pin_assignment	{ O_tm_clk }	{ LOCATION = AB11; IOSTANDARD = LVCMOS33; DRIVESTRENGTH = 8; PULLTYPE = NONE; }
+set_pin_assignment	{ IO_tm_dio }	{ LOCATION = Y10;  IOSTANDARD = LVCMOS33; DRIVESTRENGTH = 8; PULLTYPE = PULLUP; }
+
+# ---- 4) UART command channel + status report (115200 8N1) ----
+#     RX: CEP2(J12) bottom pin14 = AB9 (idle high via pullup)
+#     TX: CEP2(J12) bottom pin16 = AA8
+set_pin_assignment	{ I_uart_rx }	{ LOCATION = AB9;  IOSTANDARD = LVCMOS33; PULLTYPE = PULLUP; }
+set_pin_assignment	{ O_uart_tx }	{ LOCATION = AA8;  IOSTANDARD = LVCMOS33; DRIVESTRENGTH = 8; PULLTYPE = NONE; }
